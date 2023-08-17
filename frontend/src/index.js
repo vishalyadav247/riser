@@ -28,7 +28,7 @@ const App = () => {
 
       // Getting All post data
       const p1 = new Promise((resolve, reject) => {
-        axios.get(`https://${apiUrl}/wp-json/wp/v2/posts?per_page=100`).then((response) => {
+        axios.get(`http://${apiUrl}/wp-json/wp/v2/posts?per_page=100`).then((response) => {
           const posts = response.data;
           resolve(posts)
         })
@@ -36,7 +36,7 @@ const App = () => {
 
       // Getting Post Caterories list
       const p2 = new Promise((resolve, reject) => {
-        axios.get(`https://${apiUrl}/wp-json/wp/v2/categories`).then((response) => {
+        axios.get(`http://${apiUrl}/wp-json/wp/v2/categories`).then((response) => {
           const cat = response.data;
           const catList = {}
           for (let b of cat) {
@@ -48,7 +48,7 @@ const App = () => {
 
       // Getting post by tag name (popular)
       const p3 = new Promise((resolve, reject) => {
-        axios.get(`https://${apiUrl}/wp-json/wp/v2/tags`).then((response) => {
+        axios.get(`http://${apiUrl}/wp-json/wp/v2/tags`).then((response) => {
           const tag = response.data;
           const tagList = {};
           let popPost = [];
@@ -57,7 +57,7 @@ const App = () => {
           }
           for (let b in tagList) {
             if (tagList[b] === 'Popular') {
-              axios.get(`https://${apiUrl}/wp-json/wp/v2/posts?tags=${b}`).then((response) => {
+              axios.get(`http://${apiUrl}/wp-json/wp/v2/posts?tags=${b}`).then((response) => {
                 const dat = response.data;
                 for (let i in dat) {
                   popPost.push(dat[i])
