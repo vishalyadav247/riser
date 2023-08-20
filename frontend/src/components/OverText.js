@@ -9,7 +9,8 @@ export default function OverText(props) {
         height: "100%",
         flexDirection:"column",
         color:"white",
-        paddingTop:"20px"
+        paddingTop:"20px",
+        justifyContent:'center'
     }
     const titleCss={
         fontSize:{xs:"25px",md:"37px"},
@@ -24,7 +25,7 @@ export default function OverText(props) {
         fontFamily:"open sans"
     }
     return (
-            <Box style={styleObj} sx={{ justifyContent:"center",paddingLeft:{xs:'20px',md:'50px'}}}>
+            <Box sx={styleObj}>
             <Typography sx={titleCss}>{props.title}</Typography>
             <Divider style={{width:"180px",height:"5px",backgroundColor:"white",marginBottom:"25px"}}/>
             <Typography sx={contentCss}>

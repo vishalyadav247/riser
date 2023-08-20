@@ -144,7 +144,7 @@ export default function CategoryBlogs(props) {
                             {pageData.map(post => (
                                 <Box className="blogItem" sx={itemCss} key={post.id}>
                                     <Box className='blogImageWrapper'>
-                                        <img src={post.yoast_head_json.og_image[0].url} alt="blogImage" />
+                                        <img src={post.fimg_url} alt="blogImage" />
                                     </Box>
                                     <Box className='blogContent' sx={{ backgroundColor: '#fff', padding: "15px 15px 20px 15px", marginTop: "-6px" }}>
                                         <Link to={`/posts/${post.slug}`} style={{ color: 'black', textDecoration: 'none' }}>
@@ -152,7 +152,7 @@ export default function CategoryBlogs(props) {
                                         </Link>
                                         <Divider sx={{ width: "100%", height: "1px", backgroundColor: "black", margin: "15px 0px 30px 0px" }} />
                                         <Typography sx={{ fontSize: '12px', fontFamily: 'open sans' }}>
-                                            <span>By {post.yoast_head_json.twitter_misc['Written by']}</span>
+                                            <span>By {post.author_name}</span>
                                             <span style={MiddleSpan}>{moment(post.date).format('ll')}</span>
                                             <span style={{ display: 'block' }}> categories :&nbsp;
                                                 <Link to={`/categories/${categories[post.categories[0]]}`} style={categoriesLinkCss} onClick={topScroll}>{categories[post.categories[0]]}</Link>

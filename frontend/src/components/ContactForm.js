@@ -8,7 +8,8 @@ export default function ContactForm(props) {
         maxWidth: "1920px",
         margin: 'auto',
         backgroundColor: '#f8f8f8',
-        padding: { xs: '30px 20px 80px 20px', md: '50px 20px 50px 20px' }
+        paddingTop:'70px',
+        paddingBottom:'70px'
     }
 
     const titleCss = {
@@ -21,7 +22,7 @@ export default function ContactForm(props) {
     const descCss = {
         fontSize: '20px',
         fontFamily: 'open sans',
-        margin: '15px 0px 63px 0px'
+        margin:{xs:'15px 0px 30px 0px',sm:'15px 0px 63px 0px'}
     }
 
     const InputWrapperCss = {
@@ -60,13 +61,13 @@ export default function ContactForm(props) {
     return (
         <>
             <Box sx={obj}>
-                <Box sx={{ maxWidth: '1200px', margin: 'auto', height: "100%", display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
+                <Box sx={{ height: "100%", display: 'flex', flexDirection: { xs: 'column', md: 'row' } }} className='siteWidth'>
                     <Box sx={{ width: { xs: '100%', md: '65%' }, paddingRight: { xs: '0px', md: '50px' } }}>
                         <Typography sx={titleCss}>Get In Touch</Typography>
                         <Typography sx={descCss}>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
                         </Typography>
-                        <Link to={props.linkAddress}><Button variant='contained' sx={{ borderRadius: '20px' }}>Visit Portfolio</Button></Link>
+                        <Link to={props.linkAddress}><Button variant='outlined'>Visit Portfolio</Button></Link>
                     </Box>
                     <Box sx={{ width: { xs: '100%', md: '35%' }, borderRadius: { xs: '5px', md: '1%' }, overflow: 'hidden', marginTop: { xs: '50px', md: '0px' } }}>
                         <Box >

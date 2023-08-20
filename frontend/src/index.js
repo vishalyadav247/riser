@@ -25,7 +25,7 @@ const App = () => {
 
   useEffect(() => {
     function my() {
-
+      
       // Getting All post data
       const p1 = new Promise((resolve, reject) => {
         axios.get(`http://${apiUrl}/wp-json/wp/v2/posts?per_page=100`).then((response) => {
@@ -56,7 +56,7 @@ const App = () => {
             tagList[b.id] = b.name;
           }
           for (let b in tagList) {
-            if (tagList[b] === 'Popular') {
+            if (tagList[b] === 'popular') {
               axios.get(`http://${apiUrl}/wp-json/wp/v2/posts?tags=${b}`).then((response) => {
                 const dat = response.data;
                 for (let i in dat) {

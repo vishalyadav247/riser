@@ -5,13 +5,16 @@ import { useEffect, useState } from 'react';
 import moment from 'moment';
 import { Link } from "react-router-dom";
 
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css'; // Import slick carousel styles
+import 'slick-carousel/slick/slick-theme.css'; // Import slick carousel theme styles
+
 
 
 
 export default function RecentBlogs(props) {
     const { data, categories } = props;
     const [recentPost, setRecentPost] = useState([]);
-    // const [categoryPosts, setCategoryPosts] = useState([]);
 
 
     // three recent posts component
@@ -20,7 +23,7 @@ export default function RecentBlogs(props) {
         function my() {
             const p1 = new Promise((resolve, reject) => {
                 const postArray = []
-                for (let i = 0; i < 3; i++) {
+                for (let i = 0; i < 5; i++) {
                     const post = data[i];
                     postArray.push(post)
                 }
@@ -38,22 +41,20 @@ export default function RecentBlogs(props) {
 
 
     const wrapperCss = {
-        display: "grid",
-        gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "1fr 1fr 1fr" },
-        gridGap: "30px",
-        maxWidth: "1000px",
-        margin: "auto"
+        
+        padding: '80px 0px'
     }
     const itemCss = {
         borderRadius: "7px",
-        border:'1px solid #e7e1e1',
+        border: '1px solid #e7e1e1',
         overflow: "hidden !important",
-        margin: { xs: '0px 20px', md: '0px' }
+        width:{xs:'100%',sm:'95% !important'}
+        
 
     }
     const BlogTitle = {
         fontFamily: "poppins",
-        color:'#000000',
+        color: '#000000',
         fontSize: "23px",
         fontWeight: "500",
         lineHeight: "27px",
@@ -72,16 +73,52 @@ export default function RecentBlogs(props) {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
     }
+    const settings = {
+        dots: true,
+        autoplay: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplaySpeed: 4000,
+        arrows: false,
+        responsive: [
+            {
+                breakpoint: 1050, // medium screens
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                },
+            },
+            {
+                breakpoint: 900, // medium screens
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                },
+            },
+            {
+                breakpoint: 600, // small screens
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                },
+            },
+        ]
+    };
+
     return (
-        <Box sx={{ background:'#f8f8f8', padding: { xs: '100px 20px 100px 20px', md: '60px 50px', lg: '100px 0px 100px 0px' } }}>
+        <Box sx={{ background: '#f8f8f8' }} >
+        <Box className='siteWidth'>
             {recentPost[0] ? (
                 <Box className="blogsWrapper" sx={wrapperCss}>
-                    {recentPost.map(post => (
+                    <Slider {...settings}>
+                        {recentPost.map(post => (
                             <Box className="blogItem" sx={itemCss} key={post.id}>
                                 <Box className='blogImageWrapper'>
-                                    <img src={post.yoast_head_json.og_image[0].url} alt="blogImage" />
+                                    <img src={post.fimg_url} alt="blogImage" />
                                 </Box>
-                                <Box className='blogContent' sx={{backgroundColor:'#ffffff', padding: "15px 15px 30px 15px", marginTop: "-6px" }}>
+                                <Box className='blogContent' sx={{ backgroundColor: '#ffffff', padding: "15px 15px 30px 15px", marginTop: "-6px" }}>
                                     <Typography sx={{ fontSize: '12px', fontFamily: 'open sans' }}>
                                         <span style={{ display: 'block' }} className='categoryTile'>
                                             <Link to={`/categories/${categories[post.categories[0]]}`} style={categoriesLinkCss} onClick={topScroll}>{categories[post.categories[0]]}</Link>
@@ -90,28 +127,32 @@ export default function RecentBlogs(props) {
 
                                         </span>
                                     </Typography>
-                                    <Link to={`/posts/${post.slug}`} style={{ textDecoration: 'none'}} onClick={topScroll} >
+                                    <Link to={`/posts/${post.slug}`} style={{ textDecoration: 'none' }} onClick={topScroll} >
                                         <Typography className='blogTitle' sx={BlogTitle} dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
                                     </Link>
-                                    <Box sx={{marginTop:'60px',display:'flex'}}>
-                                        <Box sx={{marginRight:'10px'}}>
+                                    <Box sx={{ marginTop: '30px', display: 'flex' }}>
+                                        <Box sx={{ marginRight: '10px' }}>
                                             <Avatar src="/broken-image.jpg" />
                                         </Box>
                                         <Box>
-                                            <Typography sx={{ fontSize: '12px', fontFamily: 'open sans' ,color:'#000000',fontWeight:'600'}}>
-                                                {post.yoast_head_json.schema['@graph'][4].name}
+                                            <Typography sx={{ fontSize: '12px', fontFamily: 'open sans', color: '#000000', fontWeight: '600' }}>
+                                                {post.author_name}
                                             </Typography>
-                                            <Typography sx={{ fontSize: '12px', fontFamily: 'open sans' ,color:'#000000'}}>
+                                            <Typography sx={{ fontSize: '12px', fontFamily: 'open sans', color: '#000000' }}>
                                                 {moment(post.date).format('MMMM Do , YYYY')}
                                             </Typography>
                                         </Box>
                                     </Box>
                                 </Box>
                             </Box>
-                    ))}
+                        ))}
+
+                    </Slider>
+
                 </Box>
             ) : 'loading'}
 
+        </Box>
         </Box>
     )
 }

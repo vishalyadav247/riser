@@ -13,7 +13,7 @@ export default function Contact() {
       <HeaderDiv />
 
       <SingleHeading
-        heightSm='160px'
+        heightSm='200px'
         heightLg='200px'
         titleSizeSm='28px'
         titleSizeLg='35px'

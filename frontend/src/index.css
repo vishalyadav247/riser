@@ -1,18 +1,53 @@
 .siteWidth{
   max-width: 1440px;
   margin: auto;
-  padding: 0px 0px;
+  padding: 0px 70px;
+}
+@media (width < 768px){
+  .imageLine::before{
+    height: 365px !important;
+}
+  .siteWidth{
+    padding: 0px 20px;
+  }
+  .footerLinks li{
+    font-size: 14px;
+  }
+  
+}
+@media (width < 900px){
+  .recentProject{
+    grid-area: 1;
+  }
+  .logoWrapper{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+  }
+}
+@media (width > 900px){
+  .blogSidebar{
+    position: sticky;
+    top:97px;
+    height: fit-content;
+  }
+  .recentProject img{
+    min-width: 300px;
+    max-width: 550px;
+  }
 }
 
+@media (900px < width < 1200px){
+  .imageLine::before{
+    height: 370px !important;
+}
+}
 #appHeader{
   transition: all 0.1s ease-in-out;
 }
 .next,
 .previous {
   display: none;
-}
-.weDo{
-  margin-bottom: 50px;
 }
 .paginationWrapper a svg {
   color: grey;
@@ -21,11 +56,7 @@
 .pageRoot {
   display: flex;
 }
-.blogSidebar{
-  position: sticky;
-  top:97px;
-  height: fit-content;
-}
+
 
 ul[role="navigation"] {
   display: flex;
@@ -191,7 +222,6 @@ body {
   height: 100%;
   filter: brightness(0.5);
 }
-
 .weDo img {
   width: 100%;
   height: 100%;
@@ -223,16 +253,20 @@ img {
   top: -45px;
   box-shadow: 1px 2px 6px rgb(142 74 252);
 }
-
-.weAreLeft {
-  background-color: #1d1c1c;
+.imageLine{
+  position: relative;
+  z-index: 3;
 }
-
-.weAreLeft img {
-  height: auto !important;
+.imageLine::before{
+  content:'';
+  width: 300px;
+  height: 400px;
+  position: absolute;
+  top:-50px;
+  left:0px;
+  border:10px solid #ffae1e;
+  z-index: -1;
 }
-
-
 .appBar .MuiBox-root.css-19kzrtu {
   display: none;
 }
@@ -259,10 +293,6 @@ img {
 
   .leftContent::before {
     top: -28px;
-  }
-
-  .aboutShopify img {
-    width: 100% !important;
   }
 
   .menuBtn {
@@ -295,15 +325,14 @@ img {
   .menuBtn {
     margin-left: 20px !important;
   }
-
-  .menuList {
-    margin-right: 20px !important;
-  }
 }
 
 @media screen and (max-width:1024px) {
   .siteLogo {
     margin-left: 20px;
+  }
+  .skillPill{
+    height:190px;
   }
 }
 
@@ -400,14 +429,19 @@ img {
   margin-bottom: 10px;
 }
 
-.categoryTile {
-  margin: 15px 0px 25px 0;
+.wedoRight img{
+  border-radius: 5px;
 }
-
+.categoryTile {
+  margin: 3px 0px 13px 0;
+}
+.skillPill{
+  border-radius: 5px;
+}
 .categoryTile a {
   margin-right: 10px;
   border-radius: 16px;
-  padding: 5px 11px;
+  padding: 2px 11px;
   font-weight: 700;
 }
 
@@ -418,7 +452,32 @@ img {
 .categoryTile a:nth-child(2) {
   border: 2px solid #2aa6df;
 }
+.titleBorder{
+  width: 50%;
+}
+.titleBorder span:first-child{
+  width: 45%;
+  height: 5px;
+  display: inline-block;
+  background-color: rgb(255, 141, 75);
+}
+.titleBorder span:nth-child(2){
+  width: 35%;
+  height: 5px;
+  display: inline-block;
+  background-color: rgb(67, 217, 223);
+}
+.titleBorder span:nth-child(3){
+  width: 20%;
+  height: 5px;
+  display: inline-block;
+  background-color: rgb(174, 0, 255);
+}
 
+.serviceRight{
+  background-position: center;
+  background-size: cover;
+}
 /* For browsers that support the text-stroke property */
 .logoText {
   color: transparent;
@@ -441,4 +500,44 @@ img {
   .servicesWrapperRight > div{
     padding-top:100px;
   }
+}
+
+/* Example CSS for the carousel navigation buttons */
+.slick-prev,
+.slick-next {
+  position: absolute !important;
+  bottom:-14px !important;
+  top: auto !important;
+  z-index: 1;
+  cursor: pointer;
+}
+.slick-prev:before, .slick-next:before{
+  font-size: 37px !important;
+    padding: 5.2px 2.1px 0px 3px;
+    color:#1a66fbd4!important;
+  background-color:hsl(219, 100%, 95%)!important;
+  border-radius: 50%;
+  opacity: 1 !important;
+}
+.slick-prev {
+  left: auto !important;
+  right: 130px;
+}
+.servicesUl li{
+  list-style-type: none;
+  position: relative;
+}
+.servicesUl li::before{
+  content: '';
+  background-image: url('./images/tick.png');
+  background-position: center;
+  background-size: contain;
+  position: absolute;
+  top: 4px;
+  left: -25px;
+  height: 17px;
+  width: 17px;
+}
+.slick-next {
+  right: 80px!important;
 }

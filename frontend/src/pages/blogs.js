@@ -19,10 +19,10 @@ export default function Blogs(props) {
   }
   const BlogTitle = {
     fontFamily: "poppins",
-    fontSize: "16px",
+    fontSize: {xs:"24px",sm:"16px"},
     fontWeight: "500",
-    lineHeight: "22px",
-    height: '45px',
+    lineHeight: "30px",
+    maxHeight: '65px',
     overflow: 'hidden',
   }
   const MiddleSpan = {
@@ -62,7 +62,7 @@ export default function Blogs(props) {
       <HeaderDiv />
 
       <SingleHeading
-        heightSm='160px'
+        heightSm='200px'
         heightLg='200px'
         titleSizeSm='28px'
         titleSizeLg='35px'
@@ -70,8 +70,8 @@ export default function Blogs(props) {
         bgImage={bgImage} />
 
       {data ? (
-        <Box sx={{ backgroundColor: '#f8f8f8', padding: { xs: '50px 20px', md: '50px 30px', lg: '65px 0px' } }} >
-          <Box sx={{ maxWidth: "1200px", margin: "auto", display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: '50px' }}>
+        <Box sx={{ backgroundColor: '#f8f8f8', paddingTop:'80px',paddingBottom:'80px' }} >
+          <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: {xs:'10px',md:'50px'} }} className='siteWidth'>
             {/* left sildebar */}
             <Box sx={{ width: { xs: '100%', md: '27%' } }} className='blogSidebar'>
               <Box >
@@ -114,15 +114,15 @@ export default function Blogs(props) {
               {data.map(post => (
                 <Box className="blogItem" sx={itemCss} key={post.id}>
                   <Box className='blogImageWrapper'>
-                    <img src={post.yoast_head_json.og_image[0].url} alt="blogImage" />
+                  <img src={post.fimg_url} alt="blogImage" />
                   </Box>
-                  <Box className='blogContent' sx={{ backgroundColor: '#fff', padding: "15px 15px 20px 15px", marginTop: "-6px" }}>
+                  <Box className='blogContent' sx={{ backgroundColor: {xs:'#98b6d34d',sm:'#fff'}, padding: "15px 15px 20px 15px", marginTop: "-6px" }}>
                     <Link to={`/posts/${post.slug}`} style={{ color: 'black', textDecoration: 'none' }}>
                       <Typography className='blogTitle' sx={BlogTitle} dangerouslySetInnerHTML={{ __html: post.title.rendered }} onClick={topScroll} />
                     </Link>
-                    <Divider sx={{ width: "100%", height: "1px", backgroundColor: "black", margin: "15px 0px 30px 0px" }} />
+                    <Divider sx={{ width: "100%", height: "1px", backgroundColor: "black", margin:{xs: "15px 0px 50px 0px",sm: "15px 0px 30px 0px"} }} />
                     <Typography sx={{ fontSize: '12px', fontFamily: 'open sans' }}>
-                      <span>By {post.yoast_head_json.twitter_misc['Written by']}</span>
+                      <span>By {post.author_name}</span>
                       <span style={MiddleSpan}>{moment(post.date).format('ll')}</span>
                       <span style={{ display: 'block' }}> categories :&nbsp;
                         <Link to={`/categories/${categories[post.categories[0]]}`} style={categoriesLinkCss} onClick={topScroll}>{categories[post.categories[0]]}</Link>

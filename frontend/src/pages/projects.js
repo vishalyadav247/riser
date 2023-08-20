@@ -14,7 +14,7 @@ export default function Projects() {
       <HeaderDiv />
 
       <SingleHeading
-        heightSm='160px'
+        heightSm='200px'
         heightLg='200px'
         titleSizeSm='28px'
         titleSizeLg='35px'
@@ -22,7 +22,7 @@ export default function Projects() {
         bgImage={bgImage}
       />
 
-      <RecentProjects />
+      <RecentProjects bgColor='#ffffff'/>
 
       <ProjectCardWrapper />
       

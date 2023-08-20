@@ -121,7 +121,7 @@ export default function AppHeader(props) {
     <>
       <Box sx={AppHeaderWrapperCss} className="appBar" id="appHeader">
         <CssBaseline />
-        <AppBar className='siteWidth' component="nav" sx={{right:'auto',padding:"0px 50px", boxShadow: "none", backgroundColor: { xs: "#505759", md: "transparent" }, position: "fixed", top: "0px", zIndex: "10" }} >
+        <AppBar className='siteWidth' component="nav" sx={{right:'auto', boxShadow: "none", backgroundColor: { xs: "#505759", md: "transparent" }, position: "fixed", top: "0px", zIndex: "10" }} >
           <Toolbar style={{ display: "flex", justifyContent: "space-between", height: "65px", padding: "0px" }}>
             <Box style={{ marginTop: "10px" }}>
               <p className='logoText'>Riser</p>

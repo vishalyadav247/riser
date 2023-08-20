@@ -5,6 +5,7 @@ import HeaderDiv from '../components/HeaderDiv';
 import SingleHeading from '../components/SingleHeading';
 import SkillsWrapper from '../components/SkillsWrapper';
 import bgImage from '../images/blogBg.jpg';
+import AboutUs from '../components/AboutUs';
 
 export default function About() {
   return (
@@ -19,7 +20,9 @@ export default function About() {
         bgText='About'
         bgImage={bgImage} />
 
-      <Box sx={{ padding: { xs: '60px 20px' } }}>
+      <AboutUs name='Vishal Yadav' desination='Web Developer'/>
+
+      <Box >
         
         <SingleHeading
           title="Top Skills"

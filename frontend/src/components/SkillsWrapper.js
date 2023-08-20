@@ -11,15 +11,14 @@ import Skill8 from '../images/aws.png';
 import Skill9 from '../images/git.png';
 
 export default function SkillsWrapper() {
-  const TeamCardWrapperCss={
+  const skillsWrapperCss={
     display:'grid',
-    gridTemplateColumns:'1fr 1fr 1fr 1fr',
-    maxWidth:'1200px',
-    margin:'auto',
-    rowGap:'30px'
+    gridTemplateColumns:{xs:'1fr 1fr',sm:'1fr 1fr 1fr 1fr'},
+    gap:{xs:'20px',md:'50px'},
+    paddingBottom:'80px'
   }
   return (
-    <Box sx={TeamCardWrapperCss}>
+    <Box sx={skillsWrapperCss} className='siteWidth'>
       <SkillCard image={Skill1} />
       <SkillCard image={Skill2} />
       <SkillCard image={Skill3} />

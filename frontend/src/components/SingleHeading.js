@@ -11,10 +11,10 @@ export default function SingleHeading(props) {
     alignItems: "center",
     color: "#474747",
     position:'relative',
-    padding:'0px 20px',
     backgroundImage:`url('${props.bgImage}')`,
     backgroundPosition:'center',
-    backgroundSize:'100%'
+    backgroundSize:'100%',
+    padding:{xs:props.padding,sm:'0px'}
   }
 
   const titleCss = {
@@ -33,14 +33,14 @@ export default function SingleHeading(props) {
     top:'50%',
     translate:'-50% -50%',
     color:'#f6f5f5',
-    fontSize:{xs:'4em',md:'6em'},
+    fontSize:{xs:'3em',md:'6em'},
     zIndex:'0',
     fontWeight:'700',
     fontFamily:'poppins',
     textTransform:'uppercase'
 }
   return (
-    <Box sx={SingleHeadingWrapperCss} className="pageWidth">
+    <Box sx={SingleHeadingWrapperCss} >
       <Typography sx={titleCss}>
         {props.title}
       </Typography>

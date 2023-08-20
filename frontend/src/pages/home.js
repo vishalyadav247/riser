@@ -1,11 +1,11 @@
 import React from 'react';
 import HomeBanner from '../components/HomeBanner';
 import SingleHeading from '../components/SingleHeading';
-import OurServices from '../components/OurServices';
 import AboutUs from '../components/AboutUs';
 import TopSkills from '../components/TopSkills';
 import RecentProjects from '../components/RecentProjects';
 import RecentBlogs from '../components/RecentBlogs';
+import Carousel from '../components/slider'
 
 
 export default function Home(props) {
@@ -26,9 +26,10 @@ export default function Home(props) {
                 titleSizeSm='28px'
                 titleSizeLg='35px'
                 bgText='EXPLORE' 
-                style={{padding:'0px 20px'}} />
+                padding='0px 20px' />
 
-            <OurServices />
+            {/* <OurServices /> */}
+            <Carousel />
 
             <SingleHeading
                 title=" About Us"
@@ -38,7 +39,7 @@ export default function Home(props) {
                 titleSizeLg='35px'
                 bgText='KNOW' />
 
-            <AboutUs />
+            <AboutUs name='Vishal Yadav' desination='Web Developer'/>
 
             <SingleHeading
                 title=" Top Skills"
@@ -50,15 +51,15 @@ export default function Home(props) {
 
             <TopSkills />         
             
-            <RecentProjects />
+            <RecentProjects bgColor='#f9f9f9'/>
 
             <SingleHeading
-                title=" Our Recent Blogs"
+                title=" Our Blogs"
                 heightSm='160px'
                 heightLg='200px'
                 titleSizeSm='28px'
                 titleSizeLg='35px'
-                bgText='READ' />
+                bgText='recent' />
 
             <RecentBlogs data={data} categories={categories} />
         </>
