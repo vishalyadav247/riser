@@ -136,7 +136,7 @@ export default function RecentBlogs(props) {
                                         </Box>
                                         <Box>
                                             <Typography sx={{ fontSize: '12px', fontFamily: 'open sans', color: '#000000', fontWeight: '600' }}>
-                                                {post.author_name}
+                                                {post.author_info.author_name}
                                             </Typography>
                                             <Typography sx={{ fontSize: '12px', fontFamily: 'open sans', color: '#000000' }}>
                                                 {moment(post.date).format('MMMM Do , YYYY')}

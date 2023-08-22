@@ -76,6 +76,7 @@ const App = () => {
         setData(values[0]);
         setCategories(values[1]);
         setPopularPost(values[2]);
+        console.log(values[0]);
       });
     }
     my()

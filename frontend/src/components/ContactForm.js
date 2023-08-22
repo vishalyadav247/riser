@@ -57,6 +57,10 @@ export default function ContactForm(props) {
             })
         }
     }
+    const topScroll = () => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
 
     return (
         <>
@@ -67,7 +71,7 @@ export default function ContactForm(props) {
                         <Typography sx={descCss}>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
                         </Typography>
-                        <Link to={props.linkAddress}><Button variant='outlined'>Visit Portfolio</Button></Link>
+                        <Link to={props.linkAddress} onClick={topScroll}><Button variant='outlined'>Visit Portfolio</Button></Link>
                     </Box>
                     <Box sx={{ width: { xs: '100%', md: '35%' }, borderRadius: { xs: '5px', md: '1%' }, overflow: 'hidden', marginTop: { xs: '50px', md: '0px' } }}>
                         <Box >

@@ -92,7 +92,7 @@ export default function SinglePost(props) {
 
       {post.id ? (
         <Box sx={{ backgroundColor: '#f8f8f8', padding: { xs: '50px 20px', md: '50px 30px', lg: '65px 0px' } }} >
-          <Box sx={{ maxWidth: "1200px", margin: "auto", display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: '50px' }}>
+          <Box sx={{ maxWidth: "1200px", margin: "auto", display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: '30px' }}>
             {/* left sildebar */}
             <Box sx={{ width: { xs: '100%', md: '27%' } }} className='blogSidebar'>
               <Box >
@@ -131,18 +131,18 @@ export default function SinglePost(props) {
 
             </Box>
             {/* single post content */}
-            <Box sx={{ width: { xs: '100%', md: '73%' } }}>
+            <Box sx={{ width: { xs: '100%', md: '73%',backgroundColor:'#ffffff',padding:'20px' } }}>
               <Typography sx={titleCss} dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-              <img src={post.yoast_head_json.og_image[0].url} alt="blogImage" />
-              <Typography sx={{ fontFamily: "open sans", fontSize: '17px' }} dangerouslySetInnerHTML={{ __html: singlePostContent }} />
+              <img src={post.fimg_url} alt="blogImage" />
+              <Typography sx={{ fontFamily: "open sans", fontSize: '17px',color:'#020111',fontWeight:'500' }} dangerouslySetInnerHTML={{ __html: singlePostContent }} />
               <Typography sx={{ margin: '70px 0px 20px 0px', borderBottom: '1px solid rgb(252, 176, 64)', borderTop: '1px solid rgb(252, 176, 64)', padding: '10px 0px' }}>
                 <span>{moment(post.date).format('MMMM Do , YYYY')}</span>
-                <span> | {categories[post.categories[0]]} {post.categories[1] ? ", " + categories[post.categories[1]] : ""}</span>
+                <span> | Category : {categories[post.categories[0]]} {post.categories[1] ? ", " + categories[post.categories[1]] : ""}</span>
               </Typography>
-              <Typography sx={{ fontFamily: 'poppins', fontSize: '20px', color: '#00438b' }}>About the Author: {post.yoast_head_json.schema['@graph'][4].name}</Typography>
+              <Typography sx={{ fontFamily: 'poppins', fontSize: '20px', color: '#00438b' }}>About the Author: {post.author_info.author_name}</Typography>
               <Box sx={{ display: 'flex', margin: '30px 0px 20px 0px' }}>
-                <img src={post.yoast_head_json.schema['@graph'][4].image['url']} alt="blogImage" style={{ width: '90px' }} />
-                <Typography sx={{ padding: '0px 0px 0px 20px' }}>{post.yoast_head_json.schema['@graph'][4].description}</Typography>
+                <img src={post.author_info.author_image} alt="blogImage" style={{ width: '90px' }} />
+                <Typography sx={{ padding: '0px 0px 0px 20px' }}>{post.author_info.author_description}</Typography>
               </Box>
             </Box>
           </Box>

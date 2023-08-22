@@ -20,7 +20,7 @@ export default function Contact() {
         bgText='CONTACT'
         bgImage={bgImage} />
 
-      <ContactForm />
+      <ContactForm linkAddress='/projects'/>
 
     </>
   )

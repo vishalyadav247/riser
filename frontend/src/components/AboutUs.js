@@ -1,6 +1,8 @@
 import Box from '@mui/material/Box';
 import Image11 from '../images/weare.jpg'
 import { Button, Typography } from '@mui/material';
+import { Link } from "react-router-dom";
+
 
 export default function AboutUs() {
 
@@ -33,6 +35,10 @@ export default function AboutUs() {
         boxShadow: '0px 0px 3px rgba(0,0,0,0.6)',
         margin: {xs:'0 0 0 35px',sm:'50px',lg:'50px 100px 30px 100px',xl:'50px 100px 30px 160px'}
     }
+    const topScroll = () => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
 
     return (
         <Box sx={{ backgroundColor: "#f8f8f8" }}>
@@ -53,7 +59,7 @@ export default function AboutUs() {
                         developed Fully Responsive Web Applications compatible with multiple screens.
                     </Typography>
                     <Button variant='outlined'>Download CV</Button>
-                    <Button variant='outlined' sx={{ marginLeft: '20px' }}>Recent Work</Button>
+                    <Link to='/projects' onClick={topScroll}><Button variant='outlined' sx={{ marginLeft: '20px' }}>Recent Work</Button></Link>
                 </Box>
             </Box>
 

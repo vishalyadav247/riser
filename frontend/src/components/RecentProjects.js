@@ -1,6 +1,7 @@
 import React from 'react';
 import recentProjectImage from '../images/recentProjects.jpg';
 import { Typography, Box, Button } from '@mui/material';
+import { Link } from "react-router-dom";
 
 export default function RecentProjects(props) {
 
@@ -25,7 +26,10 @@ export default function RecentProjects(props) {
         fontWeight: '300',
         lineHeight: '1.8'
     }
-
+    const topScroll = () => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
 
     return (
         <>
@@ -36,7 +40,7 @@ export default function RecentProjects(props) {
                         <Typography sx={ContentCss}>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
                         </Typography>
-                        <Button variant="outlined" sx={{ maxWidth: '200px', marginTop: '10px', height: '40px', fontSize: '14px' }}>Recent Project</Button>
+                        <Link to='projects' onClick={topScroll}><Button variant="outlined" sx={{ maxWidth: '200px', marginTop: '10px', height: '40px', fontSize: '14px' }}>Recent Project</Button></Link>
                     </Box>
                     <Box sx={{}} className="recentProject">
                         <img src={recentProjectImage} alt='react projects' style={{  }} />
