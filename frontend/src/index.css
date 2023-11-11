@@ -1,7 +1,3 @@
-body{
-  transition: all 1s ease-in-out;
-}
-
 .siteWidth{
   max-width: 1440px;
   margin: auto;
@@ -300,9 +296,9 @@ img {
   }
 
   .menuBtn {
-    color: #000000;
-    margin: 0px 0px 10px 0px !important;
-    padding: 10px;
+    color: #535353;
+    margin: 0px 0px 0px 0px !important;
+    padding: 3px;
     font-weight: 600;
     font-size: 17px;
   }
@@ -455,6 +451,9 @@ img {
 
 .categoryTile a:nth-child(2) {
   border: 2px solid #2aa6df;
+}
+.categoryTile a:nth-child(3) {
+  border: 2px solid #8bdf2a;
 }
 .titleBorder{
   width: 50%;

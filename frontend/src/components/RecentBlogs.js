@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Box from '@mui/material/Box';
 import { Typography, Avatar } from '@mui/material';
 import { useEffect, useState } from 'react';
@@ -8,14 +8,12 @@ import { Link } from "react-router-dom";
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css'; // Import slick carousel styles
 import 'slick-carousel/slick/slick-theme.css'; // Import slick carousel theme styles
+import { blogData , blogCategories } from '../app';
 
-
-
-
-export default function RecentBlogs(props) {
-    const { data, categories } = props;
+export default function RecentBlogs() {
+    const data = useContext(blogData);
+    const categories = useContext(blogCategories);
     const [recentPost, setRecentPost] = useState([]);
-
 
     // three recent posts component
     useEffect(() => {
@@ -34,11 +32,7 @@ export default function RecentBlogs(props) {
             })
         }
         my()
-
-    }, [data])
-
-
-
+    },[data])
 
     const wrapperCss = {
         
@@ -116,7 +110,7 @@ export default function RecentBlogs(props) {
                         {recentPost.map(post => (
                             <Box className="blogItem" sx={itemCss} key={post.id}>
                                 <Box className='blogImageWrapper'>
-                                    <img src={post.fimg_url} alt="blogImage" />
+                                    <img src={post.img_url} alt="blogImage" />
                                 </Box>
                                 <Box className='blogContent' sx={{ backgroundColor: '#ffffff', padding: "15px 15px 30px 15px", marginTop: "-6px" }}>
                                     <Typography sx={{ fontSize: '12px', fontFamily: 'open sans' }}>
@@ -136,7 +130,7 @@ export default function RecentBlogs(props) {
                                         </Box>
                                         <Box>
                                             <Typography sx={{ fontSize: '12px', fontFamily: 'open sans', color: '#000000', fontWeight: '600' }}>
-                                                {post.author_info.author_name}
+                                                {post.author_name}
                                             </Typography>
                                             <Typography sx={{ fontSize: '12px', fontFamily: 'open sans', color: '#000000' }}>
                                                 {moment(post.date).format('MMMM Do , YYYY')}

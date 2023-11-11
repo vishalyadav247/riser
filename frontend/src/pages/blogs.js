@@ -1,12 +1,57 @@
 import { Box, Typography, Divider } from '@mui/material';
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import moment from 'moment';
+
 
 import SingleHeading from '../components/SingleHeading';
 import HeaderDiv from '../components/HeaderDiv';
 import bgImage from '../images/blogBg.jpg';
+import { blogData, blogCategories, popularBlogPosts } from '../app';
+import { useContext, useState, useEffect } from 'react';
 
-export default function Blogs(props) {
+export default function Blogs() {
+
+  const totalBlogs = useContext(blogData);
+  const categories = useContext(blogCategories);
+  const popularPost = useContext(popularBlogPosts);
+  const [data, setData] = useState([])
+
+  const location = useLocation();
+  const currentPath = location.pathname;
+  const { categoryName } = useParams();
+
+  useEffect(() => {
+
+    if (currentPath.includes('/blogs')) {
+      setData(totalBlogs);
+    }
+    else {
+
+      let catId = 0;
+      for (let i in categories) {
+        if (categories[i] === categoryName) {
+          catId = i;
+        }
+      }
+
+      const p4 = new Promise((resolve, reject) => {
+        let catPostS = []
+        for (let i in totalBlogs) {
+          let catIdArr = totalBlogs[i].categories;
+          for (let j in catIdArr) {
+            if (catId === `${catIdArr[j]}`) {
+              catPostS.push(totalBlogs[i])
+            }
+          }
+        }
+
+        resolve(catPostS)
+      })
+      p4.then((value) => {
+        setData(value)
+      })
+    }
+  },[categories,categoryName,currentPath,totalBlogs]);
 
   const wrapperCss = {
     display: "grid",
@@ -19,7 +64,7 @@ export default function Blogs(props) {
   }
   const BlogTitle = {
     fontFamily: "poppins",
-    fontSize: {xs:"24px",sm:"16px"},
+    fontSize: { xs: "24px", sm: "16px" },
     fontWeight: "500",
     lineHeight: "30px",
     maxHeight: '65px',
@@ -48,13 +93,12 @@ export default function Blogs(props) {
     textDecoration: 'none'
   }
 
-  const { data, categories, popularPost } = props;
   let categoriesTiles = Object.values(categories);
- 
+
   const topScroll = () => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-    
+
   }
 
   return (
@@ -70,8 +114,8 @@ export default function Blogs(props) {
         bgImage={bgImage} />
 
       {data ? (
-        <Box sx={{ backgroundColor: '#f8f8f8', paddingTop:'80px',paddingBottom:'80px' }} >
-          <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: {xs:'10px',md:'50px'} }} className='siteWidth'>
+        <Box sx={{ backgroundColor: '#f8f8f8', paddingTop: {xs:'35px',md:'80px'}, paddingBottom: '80px' }} >
+          <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: { xs: '10px', md: '50px' } }} className='siteWidth'>
             {/* left sildebar */}
             <Box sx={{ width: { xs: '100%', md: '27%' } }} className='blogSidebar'>
               <Box >
@@ -114,13 +158,13 @@ export default function Blogs(props) {
               {data.map(post => (
                 <Box className="blogItem" sx={itemCss} key={post.id}>
                   <Box className='blogImageWrapper'>
-                  <img src={post.fimg_url} alt="blogImage" />
+                    <img src={post.img_url} alt="blogImage" />
                   </Box>
-                  <Box className='blogContent' sx={{ backgroundColor: {xs:'#98b6d34d',sm:'#fff'}, padding: "15px 15px 20px 15px", marginTop: "-6px" }}>
+                  <Box className='blogContent' sx={{ backgroundColor: { xs: '#98b6d34d', sm: '#fff' }, padding: "15px 15px 20px 15px", marginTop: "-6px" }}>
                     <Link to={`/posts/${post.slug}`} style={{ color: 'black', textDecoration: 'none' }}>
                       <Typography className='blogTitle' sx={BlogTitle} dangerouslySetInnerHTML={{ __html: post.title.rendered }} onClick={topScroll} />
                     </Link>
-                    <Divider sx={{ width: "100%", height: "1px", backgroundColor: "black", margin:{xs: "15px 0px 50px 0px",sm: "15px 0px 30px 0px"} }} />
+                    <Divider sx={{ width: "100%", height: "1px", backgroundColor: "black", margin: { xs: "15px 0px 50px 0px", sm: "15px 0px 30px 0px" } }} />
                     <Typography sx={{ fontSize: '12px', fontFamily: 'open sans' }}>
                       <span>By {post.author_name}</span>
                       <span style={MiddleSpan}>{moment(post.date).format('ll')}</span>

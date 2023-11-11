@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState , useContext } from 'react';
 import { Typography, Box } from '@mui/material';
 import moment from 'moment';
 import { Link, useParams } from "react-router-dom";
@@ -7,12 +7,13 @@ import { Link, useParams } from "react-router-dom";
 import SingleHeading from '../components/SingleHeading';
 import HeaderDiv from '../components/HeaderDiv';
 import bgImage from '../images/blogBg.jpg';
+import { blogData , blogCategories, popularBlogPosts } from '../app';
 
+export default function SinglePost() {
 
-
-
-
-export default function SinglePost(props) {
+  const data = useContext(blogData);
+  const categories = useContext(blogCategories);
+  const popularPost = useContext(popularBlogPosts);
 
   const categoriesLinkCss = {
     color: 'black',
@@ -36,7 +37,6 @@ export default function SinglePost(props) {
     fontFamily: 'poppins'
   }
 
-  const { data, categories, popularPost } = props;
   let categoriesTiles = Object.values(categories);
 
   // import slug from path 
@@ -133,16 +133,16 @@ export default function SinglePost(props) {
             {/* single post content */}
             <Box sx={{ width: { xs: '100%', md: '73%',backgroundColor:'#ffffff',padding:'20px' } }}>
               <Typography sx={titleCss} dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-              <img src={post.fimg_url} alt="blogImage" />
+              <img src={post.img_url} alt="blogImage" />
               <Typography sx={{ fontFamily: "open sans", fontSize: '17px',color:'#020111',fontWeight:'500' }} dangerouslySetInnerHTML={{ __html: singlePostContent }} />
               <Typography sx={{ margin: '70px 0px 20px 0px', borderBottom: '1px solid rgb(252, 176, 64)', borderTop: '1px solid rgb(252, 176, 64)', padding: '10px 0px' }}>
                 <span>{moment(post.date).format('MMMM Do , YYYY')}</span>
                 <span> | Category : {categories[post.categories[0]]} {post.categories[1] ? ", " + categories[post.categories[1]] : ""}</span>
               </Typography>
-              <Typography sx={{ fontFamily: 'poppins', fontSize: '20px', color: '#00438b' }}>About the Author: {post.author_info.author_name}</Typography>
+              <Typography sx={{ fontFamily: 'poppins', fontSize: '20px', color: '#00438b' }}>About the Author: {post.author_name}</Typography>
               <Box sx={{ display: 'flex', margin: '30px 0px 20px 0px' }}>
-                <img src={post.author_info.author_image} alt="blogImage" style={{ width: '90px' }} />
-                <Typography sx={{ padding: '0px 0px 0px 20px' }}>{post.author_info.author_description}</Typography>
+                <img src={post.author_image} alt="blogImage" style={{ width: '90px' }} />
+                <Typography sx={{ padding: '0px 0px 0px 20px' }}>{post.author_description}</Typography>
               </Box>
             </Box>
           </Box>

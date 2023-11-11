@@ -8,16 +8,14 @@ import RecentBlogs from '../components/RecentBlogs';
 import Carousel from '../components/slider'
 
 
-export default function Home(props) {
-    const { data, categories } = props;
+export default function Home() {
 
     return (
         <>
             <HomeBanner
-                title='I build things for the web'
-                content='I am Self-motivated & results oriented professional MBA (IT) 
-                graduate and a passionate Web Developer with hands-on experience
-                & practice in Web Application Development.'/>
+                title='We build things for the web'
+                content='Experienced player in Market on Web Technologies, Good choice for small as well as large businessess.
+                We have experise to build web solutions no multiple platform according to the need & demand. '/>
 
             <SingleHeading
                 title="Web Development Services"
@@ -61,7 +59,7 @@ export default function Home(props) {
                 titleSizeLg='35px'
                 bgText='recent' />
 
-            <RecentBlogs data={data} categories={categories} />
+            <RecentBlogs />
         </>
     )
 }

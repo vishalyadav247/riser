@@ -76,28 +76,33 @@ export default function AppHeader(props) {
     minWidth: "0px",
     textDecoration: 'none',
   }
+  const mobileMenuArrrow = {
+    fontSize:'30px',
+    position:'relative',
+    top:'-2px'
+  }
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }} mt={4}>
-      <Box style={{ marginTop: "10px", marginBottom: '40px' }}>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign:'left',paddingLeft:{xs:'30px',sm:'0px'} }} mt={4}>
+      <Box sx={{ marginTop:{xs:"-10px",sm:"10px"}, marginBottom:{xs:'20px',sm:'40px'} }}>
         <p className='logoText'>Riser</p>
         {/* <img src={logo} style={{ width: "280px", height: "35px" }} alt="logo" className='siteLogo' id="logoImg" /> */}
       </Box>
       <List sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <Link to='/' className="menuBtn M" style={linkCss} onClick={Active}>
-          HOME
+          HOME <span style={mobileMenuArrrow}>&rarr;</span>
         </Link>
         <Link to='/about' className="menuBtn M" style={linkCss} onClick={Active}>
-          ABOUT US
+          ABOUT US <span style={mobileMenuArrrow}>&rarr;</span>
         </Link>
         <Link to='/projects' className="menuBtn M" style={linkCss} onClick={Active}>
-          PROJECTS
+          PROJECTS <span style={mobileMenuArrrow}>&rarr;</span>
         </Link>
         <Link to='/blogs' className="menuBtn M" style={linkCss} onClick={Active}>
-          BLOGS
+          BLOGS <span style={mobileMenuArrrow}>&rarr;</span>
         </Link>
         <Link to='/contact' className="menuBtn M" style={linkCss} onClick={Active}>
-          HIRE Us!
+          HIRE Us! <span style={mobileMenuArrrow}>&rarr;</span>
         </Link>
       </List>
     </Box>
@@ -129,7 +134,7 @@ export default function AppHeader(props) {
             </Box>
             <Box sx={{ display: { xs: 'none', md: 'block' } }} className="menuList">
               <Link to='/' className="menuBtn" style={linkCss} onClick={Active}>
-                HOME
+                HOME 
               </Link>
               <Link to='/about' className="menuBtn" style={linkCss} onClick={Active}>
                 ABOUT US
